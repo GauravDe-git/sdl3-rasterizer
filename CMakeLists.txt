@@ -16,7 +16,7 @@ if(MSVC)
     add_compile_options(/MP)
 endif(MSVC)
 
-# add_subdirectory( external EXCLUDE_FROM_ALL)
+add_subdirectory( external EXCLUDE_FROM_ALL)
 # add_subdirectory( math )
 # add_subdirectory( graphics )
 
