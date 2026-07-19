@@ -21,5 +21,5 @@ add_subdirectory( external EXCLUDE_FROM_ALL)
 # add_subdirectory( graphics )
 
 if(SDL3_RAST_SAMPLES)
-#    add_subdirectory( samples )
+    add_subdirectory( samples )
 endif(SDL3_RAST_SAMPLES)
