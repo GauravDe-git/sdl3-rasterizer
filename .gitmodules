@@ -1,0 +1,21 @@
+[submodule "external/Audio"]
+	path = external/Audio
+	url = https://github.com/3dgep/Audio
+[submodule "external/glm"]
+	path = external/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "external/imgui"]
+	path = external/imgui
+	url = https://github.com/ocornut/imgui.git
+	branch = docking
+[submodule "external/input"]
+	path = external/input
+	url = https://github.com/3dgep/input.git
+[submodule "external/SDL"]
+	path = external/SDL
+	url = https://github.com/libsdl-org/SDL.git
+	ignore = untracked
+[submodule "external/SDL_ttf"]
+	path = external/SDL_ttf
+	url = https://github.com/libsdl-org/SDL_ttf.git
+	ignore = untracked
