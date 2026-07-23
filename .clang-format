@@ -1,0 +1,26 @@
+# .clang-format
+Language: Cpp
+BasedOnStyle: LLVM
+
+# Unreal conventions 
+IndentWidth: 4
+TabWidth: 4
+UseTab: Always
+AlignConsecutiveDeclarations: true
+AlignConsecutiveAssignments: true
+PointerAlignment: Left
+NamespaceIndentation: All
+IndentCaseLabels: true
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass: true
+  AfterFunction: true
+  AfterControlStatement: true
+  AfterEnum: true
+  AfterStruct: true
+  BeforeElse: true
+  BeforeCatch: true
+  AfterNamespace: true
+
+# SortIncludes: false   keeping this, Unreal doesn't sort, easier to manage manually
+ColumnLimit: 0
