@@ -5,6 +5,7 @@
 
 struct SDL_Window;
 struct SDL_Renderer;
+struct ImGuiContext;
 
 namespace rast
 {
@@ -33,9 +34,9 @@ namespace rast
 
 			bool isValid() const;
 
-			void clear(uint8_t r, uint8_t g, uint8_t b, uint8_t a = 255);
+			void clear(uint8_t r, uint8_t g, uint8_t b, uint8_t a = 255) const;
 
-			void present();
+			void present() const;
 
 			void resize(int width, int height);
 
@@ -51,8 +52,17 @@ namespace rast
 
 			bool isVsync() const noexcept;
 
+			// Set this Window as the current ImGui context
+			bool setCurrent() const;
+
 		  private:
 			static bool SDLCALL eventWatch(void* userdata, SDL_Event* event);
+
+			// Begin a new ImGui frame
+			void beginFrame() const;
+
+			// Each Window has it's own ImGui context
+			ImGuiContext* m_ImGuiContext = nullptr;
 
 			SDL_Window*	  m_Window	   = nullptr;
 			SDL_Renderer* m_Renderer   = nullptr;
