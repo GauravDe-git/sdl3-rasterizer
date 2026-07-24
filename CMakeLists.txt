@@ -17,7 +17,7 @@ if(MSVC)
 endif(MSVC)
 
 add_subdirectory( external EXCLUDE_FROM_ALL)
-# add_subdirectory( math )
+add_subdirectory( math )
 add_subdirectory( graphics )
 
 if(SDL3_RAST_SAMPLES)
