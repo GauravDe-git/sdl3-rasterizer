@@ -2,10 +2,21 @@ cmake_minimum_required(VERSION 3.15...4.4)
 
 set( INC_FILES 
     inc/graphics/Window.hpp
+    inc/aligned_unique_ptr.hpp
+    inc/stb_image.h
+    inc/stb_image_write.h
+    inc/graphics/Color.hpp
+    inc/graphics/BlendMode.hpp
+    inc/graphics/Image.hpp
 )
 
 set( SRC_FILES 
     src/Window.cpp
+    src/stb_image.cpp
+    src/stb_image_write.cpp
+    src/Color.cpp
+    src/BlendMode.cpp
+    src/Image.cpp
 )
 
 set ( IMGUI_INC_FILES
@@ -62,6 +73,8 @@ target_include_directories( graphics
 target_link_libraries( graphics 
     PUBLIC 
         SDL3::SDL3
+    PUBLIC
+        sdl3_rast::math
 )
 
 # Warning Level 4 and treat warnings as errors

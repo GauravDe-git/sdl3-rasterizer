@@ -8,6 +8,9 @@ TabWidth: 4
 UseTab: Always
 AlignConsecutiveDeclarations: true
 AlignConsecutiveAssignments: true
+BreakConstructorInitializers: BeforeComma
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+PackConstructorInitializers: Never
 PointerAlignment: Left
 NamespaceIndentation: All
 IndentCaseLabels: true
