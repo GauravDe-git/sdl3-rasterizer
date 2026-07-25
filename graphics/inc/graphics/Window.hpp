@@ -1,6 +1,10 @@
 #pragma once
 
+#include "SDL3/SDL_render.h"
 #include <SDL3/SDL_events.h>
+
+#include "glm/vec2.hpp"
+
 #include <string_view>
 
 struct SDL_Window;
@@ -11,6 +15,8 @@ namespace rast
 {
 	inline namespace graphics
 	{
+		struct Image;
+
 		class Window
 		{
 		  public:
@@ -55,6 +61,10 @@ namespace rast
 			// Set this Window as the current ImGui context
 			bool setCurrent() const;
 
+			void present(const Image& image);
+
+			glm::vec2 clientToImage( float x, float y, const Image& image) const noexcept;
+
 		  private:
 			static bool SDLCALL eventWatch(void* userdata, SDL_Event* event);
 
@@ -71,6 +81,8 @@ namespace rast
 			bool		  m_Fullscreen = false;
 			bool		  m_VSync	   = true;
 			bool		  m_Close	   = false;
+
+			SDL_Texture* m_Texture = nullptr;
 		};
 
 

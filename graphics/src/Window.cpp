@@ -1,5 +1,7 @@
 #include <graphics/Window.hpp>
 
+#include "graphics/Image.hpp"
+
 #include <SDL3/SDL_init.h>
 #include <SDL3/SDL_log.h>
 #include <SDL3/SDL_render.h>
@@ -287,6 +289,81 @@ bool Window::setCurrent() const
 		return true;
 	}
 	return false;
+}
+
+void Window::present(const Image& image)
+{
+	if (!m_Renderer) return;
+
+	float w,h;
+
+	if (!m_Texture || 
+		 (SDL_GetTextureSize(m_Texture, &w, &h) &&
+		 ( w != static_cast<float>(image.getWidth()) || 
+		   h != static_cast<float>(image.getWidth() ) ) ) )
+	{
+		if (m_Texture) SDL_DestroyTexture(m_Texture);
+
+		m_Texture = SDL_CreateTexture(m_Renderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, image.getWidth(), image.getHeight());
+
+		if (!m_Texture)
+		{
+			SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Failed to create texture: %s", SDL_GetError());
+			return;
+		}
+		SDL_SetTextureScaleMode(m_Texture, SDL_SCALEMODE_NEAREST);
+		SDL_SetTextureBlendMode(m_Texture, SDL_BLENDMODE_NONE);
+	}
+
+	// Copy the image data to the texture.
+	if (!SDL_UpdateTexture(m_Texture, nullptr, image.data(), static_cast<int>(image.getPitch())))
+	{
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Failed to update texture: %s", SDL_GetError());
+		return;
+	}
+
+	// Center the image on the screen while maintaining aspect ratio
+	SDL_FRect dstRect { 0.f, 0.f, static_cast<float>(m_Width), static_cast<float>(m_Height)};
+	SDL_FRect srcRect{0.f, 0.f, static_cast<float>(image.getWidth()), static_cast<float>(image.getHeight())};
+
+	const float aspectRatio = srcRect.w / srcRect.h ;
+	const float scaleWidth = dstRect.w / srcRect.w;
+	const float scaleHeight = dstRect.h / srcRect.h;
+
+	if (scaleWidth < scaleHeight)
+	{
+		dstRect.h = dstRect.w / aspectRatio;
+	}
+	else
+	{
+		dstRect.w = dstRect.h * aspectRatio;
+	}
+	dstRect.x = (static_cast<float>(m_Width) - dstRect.w) / 2;
+	dstRect.y = (static_cast<float>(m_Height) - dstRect.h) / 2;
+
+	if (!SDL_RenderTexture(m_Renderer, m_Texture, &srcRect, &dstRect))
+	{
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Failed to render texture: %s", SDL_GetError());
+		return;
+	}
+
+	present();
+
+}
+
+glm::vec2 Window::clientToImage(float x, float y, const Image& image) const noexcept
+{
+	const float imageWidth	 = static_cast<float>(image.getWidth());
+	const float imageHeight	 = static_cast<float>(image.getHeight());
+	const float windowWidth	 = static_cast<float>(m_Width);
+	const float windowHeight = static_cast<float>(m_Height);
+
+	const float scale = std::min(windowWidth / imageWidth, windowHeight / imageHeight);
+
+	const float offsetX = (windowWidth - imageWidth * scale) / 2.0f;
+	const float offsetY = (windowHeight - imageHeight * scale) / 2.0f;
+
+	return {(x - offsetX) / scale, (y - offsetY) / scale};
 }
 
 bool SDLCALL Window::eventWatch(void* userdata, SDL_Event* event)
