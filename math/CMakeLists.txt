@@ -4,6 +4,7 @@ set( INC_FILES
     inc/math/Math.hpp
     inc/math/AABB.hpp
     inc/math/Viewport.hpp
+    inc/math/Rect.hpp
 )
 
 set( SRC_FILES
