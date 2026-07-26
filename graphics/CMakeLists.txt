@@ -5,6 +5,7 @@ set( INC_FILES
     inc/aligned_unique_ptr.hpp
     inc/stb_image.h
     inc/stb_image_write.h
+    inc/graphics/ResourceManager.hpp
     inc/graphics/Color.hpp
     inc/graphics/BlendMode.hpp
     inc/graphics/Image.hpp
@@ -14,6 +15,7 @@ set( SRC_FILES
     src/Window.cpp
     src/stb_image.cpp
     src/stb_image_write.cpp
+    src/ResourceManager.cpp
     src/Color.cpp
     src/BlendMode.cpp
     src/Image.cpp
