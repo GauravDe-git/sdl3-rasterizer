@@ -136,7 +136,7 @@ void Image::save(const std::filesystem::path& file) const
 	}
 	else if (extension == ".jpg")
 	{
-		stbi_write_png(file.string().c_str(),
+		stbi_write_jpg(file.string().c_str(),
 					   m_Width, m_Height, 4,
 					   m_Pixels.get(),
 					   10);

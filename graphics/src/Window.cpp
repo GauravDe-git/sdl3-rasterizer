@@ -300,7 +300,7 @@ void Window::present(const Image& image)
 	if (!m_Texture || 
 		 (SDL_GetTextureSize(m_Texture, &w, &h) &&
 		 ( w != static_cast<float>(image.getWidth()) || 
-		   h != static_cast<float>(image.getWidth() ) ) ) )
+		   h != static_cast<float>(image.getHeight() ) ) ) )
 	{
 		if (m_Texture) SDL_DestroyTexture(m_Texture);
 
