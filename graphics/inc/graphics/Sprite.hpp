@@ -49,6 +49,16 @@ namespace rast
 				return m_BlendMode;
 			}
 
+			int getWidth() const noexcept
+			{
+				return m_Rect.width;
+			}
+
+			int getHeight() const noexcept
+			{
+				return m_Rect.height;
+			}
+
 		  private:
 			std::shared_ptr<Image> m_Image;
 			math::RectI			   m_Rect;

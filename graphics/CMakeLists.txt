@@ -10,6 +10,8 @@ set( INC_FILES
     inc/graphics/BlendMode.hpp
     inc/graphics/Image.hpp
     inc/graphics/Sprite.hpp
+    inc/graphics/SpriteSheet.hpp
+    inc/graphics/SpriteAnimation.hpp
 )
 
 set( SRC_FILES 
@@ -21,6 +23,8 @@ set( SRC_FILES
     src/BlendMode.cpp
     src/Image.cpp
     src/Sprite.cpp
+    src/SpriteSheet.cpp
+    src/SpriteAnimation.cpp
 )
 
 set ( IMGUI_INC_FILES
