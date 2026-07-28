@@ -59,6 +59,24 @@ namespace rast
 				return m_Rect.height;
 			}
 
+			/// <summary>
+			/// Returns the size of the sprite as a 2D integer vector.
+			/// </summary>
+			/// <returns>The width and height if the sprite in the image.</returns>
+			glm::ivec2 getSize() const noexcept
+			{
+				return {m_Rect.width, m_Rect.height};
+			}
+
+			/// <summary>
+			/// Returns the UV coordinates as a 2D integer vector.
+			/// </summary>
+			/// <returns>The UV coordinates of the sprite in the image.</returns>
+			glm::ivec2 getUV() const noexcept
+			{
+				return {m_Rect.left, m_Rect.top};
+			}
+
 		  private:
 			std::shared_ptr<Image> m_Image;
 			math::RectI			   m_Rect;

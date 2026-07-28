@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Rect.hpp"
 #include "Viewport.hpp"
 
 #include <glm/common.hpp> // glm min max
@@ -150,6 +151,30 @@ namespace rast
 				}
 
 				return {};
+			}
+
+			/// Construct an AABB from min & max points.
+			static AABB fromMinMax(const glm::vec2& min, const glm::vec2& max)
+			{
+				AABB aabb;
+
+				aabb.min = min;
+				aabb.max = max;
+
+				return aabb;
+			}
+
+			/// Construct an AABB from a rectangle.
+			template <typename T>
+			static AABB fromRect(const Rect<T>& rect)
+			{
+				return fromMinMax({rect.topLeft(), 0.0f}, {rect.bottomRight(), 0.0f});
+			}
+
+			/// Return this AABB clamped to another.
+			AABB clamped(const AABB& aabb) const noexcept
+			{
+				return fromMinMax(glm::max(min, aabb.min), glm::min(max, aabb.max));
 			}
 
 		public:

@@ -13,6 +13,7 @@ set( INC_FILES
     inc/graphics/SpriteSheet.hpp
     inc/graphics/SpriteAnimation.hpp
     inc/graphics/Tilemap.hpp
+    inc/graphics/Rasterizer.hpp
 )
 
 set( SRC_FILES 
@@ -27,6 +28,7 @@ set( SRC_FILES
     src/SpriteSheet.cpp
     src/SpriteAnimation.cpp
     src/Tilemap.cpp
+    src/Rasterizer.cpp
 )
 
 set ( IMGUI_INC_FILES
