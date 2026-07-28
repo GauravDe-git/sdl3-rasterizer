@@ -74,7 +74,7 @@ namespace rast
 
 			const Sprite& operator[](size_t index) const noexcept;
 
-			const Sprite& operator[](size_t i, size_t j) const noexcept;
+			const Sprite& operator()(size_t i, size_t j) const noexcept;
 
 		  private:
 			int m_Columns = 0;

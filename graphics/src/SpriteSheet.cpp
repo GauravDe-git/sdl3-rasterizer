@@ -63,7 +63,7 @@ const Sprite& SpriteSheet::operator[](size_t index) const noexcept
 	return getSprite(index);
 }
 
-const Sprite& SpriteSheet::operator[](size_t i, size_t j) const noexcept
+const Sprite& SpriteSheet::operator()(size_t i, size_t j) const noexcept
 {
 	return getSprite(i * m_Columns + j);
 }
