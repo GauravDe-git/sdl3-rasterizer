@@ -164,11 +164,19 @@ namespace rast
 				return aabb;
 			}
 
+			/// Construct an AABB from a viewport.
+			static AABB fromViewport(const Viewport& viewport)
+			{
+				return AABB{viewport};
+			}
+
 			/// Construct an AABB from a rectangle.
 			template <typename T>
-			static AABB fromRect(const Rect<T>& rect)
+			static AABB fromRect(const rast::Rect<T>& rect)
 			{
-				return fromMinMax({rect.topLeft(), 0.0f}, {rect.bottomRight(), 0.0f});
+				const glm::vec2 topLeft{static_cast<float>(rect.left), static_cast<float>(rect.top)};
+				const glm::vec2 bottomRight{static_cast<float>(rect.right()), static_cast<float>(rect.bottom())};
+				return fromMinMax(topLeft, bottomRight);
 			}
 
 			/// Return this AABB clamped to another.

@@ -14,6 +14,7 @@ set( INC_FILES
     inc/graphics/SpriteAnimation.hpp
     inc/graphics/Tilemap.hpp
     inc/graphics/Rasterizer.hpp
+    inc/graphics/Enums.hpp
 )
 
 set( SRC_FILES 

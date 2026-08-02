@@ -77,6 +77,22 @@ namespace rast
 				return {m_Rect.left, m_Rect.top};
 			}
 
+			/// This color is used to modulate the color of the sprite when rendering.
+			void setColor(const Color& color) noexcept
+			{
+				m_Color = color;
+			}
+
+			/// <summary>
+			/// The blend mode to use for the sprite. Sprites with transparent pixels should use BlendMode::AlphaBlend.
+			/// Note: Alpha blending can be computationally expensive. Don't use Alpha blending on opaque sprites.
+			/// </summary>
+			/// <param name="blendMode">The sprite's blend mode.</param>
+			void setBlendMode(const BlendMode& blendMode) noexcept
+			{
+				m_BlendMode = blendMode;
+			}
+
 		  private:
 			std::shared_ptr<Image> m_Image;
 			math::RectI			   m_Rect;
